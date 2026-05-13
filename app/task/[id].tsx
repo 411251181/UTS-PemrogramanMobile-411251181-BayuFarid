@@ -1,5 +1,5 @@
 import { Stack, router, useLocalSearchParams } from 'expo-router';
-import React, { useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { Alert, Pressable, ScrollView, StyleSheet, Text, TextInput, View } from 'react-native';
 
 import { COLORS } from '@/src/constants/theme';
@@ -13,6 +13,12 @@ export default function TaskDetailScreen() {
   const task = useMemo(() => state.tasks.find((item) => item.id === id), [id, state.tasks]);
 
   const [form, setForm] = useState<Task | null>(task ?? null);
+
+  useEffect(() => {
+    if (task) {
+      setForm(task);
+    }
+  }, [task]);
 
   if (!task || !form) {
     return (
@@ -33,7 +39,7 @@ export default function TaskDetailScreen() {
     }
 
     updateTask(form);
-    Alert.alert('Berhasil', 'Task berhasil diperbarui.');
+    router.back();
   };
 
   const handleDelete = () => {

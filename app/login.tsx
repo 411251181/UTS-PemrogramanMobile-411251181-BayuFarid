@@ -36,7 +36,7 @@ export default function LoginScreen() {
 
       // Success - navigate to tabs
       router.replace('/(tabs)');
-    } catch (err) {
+    } catch {
       setError('Terjadi kesalahan saat login. Coba lagi.');
       Alert.alert('Login Error', 'Gagal terhubung ke server. Periksa koneksi internet Anda.');
     } finally {
