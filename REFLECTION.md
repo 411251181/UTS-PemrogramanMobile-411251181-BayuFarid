@@ -1,5 +1,18 @@
 # REFLECTION.md - Analisis Kritis TaskMate
 
+
+
+---
+
+**Nama:** Bayu Farid  
+**NIM:** 411251181  
+**Mata Kuliah:** Pemrograman Mobile (3 SKS)  
+**Dosen:** Wawan Kurniawan, S.Kom, M.Kom  
+**Tanggal:** Rabu, 13 Mei 2026  
+**Aplikasi:** TaskMate - Internal Task Manager DevNusa
+
+---
+
 ## (a) Kelemahan Arsitektur Jika Aplikasi Berkembang 10x Fitur
 
 Arsitektur TaskMate saat ini sudah cukup rapi untuk skala UTS dan prototype karena menggunakan Expo Router, pemisahan folder `app`, `src/context`, `src/components`, `src/hooks`, `src/services`, dan `src/constants`. Namun jika fitur berkembang 10x, misalnya terdapat modul project, komentar, notifikasi, role permission, file attachment, analytics, audit log, dan realtime chat, kelemahan utama akan muncul pada pemisahan domain. Saat ini state task masih terpusat pada satu `TaskContext`, sehingga semakin banyak fitur akan membuat context menjadi besar, sulit dites, dan berpotensi menyebabkan re-render berlebihan. Struktur route juga masih sederhana, sehingga jika banyak nested screen ditambahkan tanpa grouping domain, navigasi akan sulit dipelihara.
