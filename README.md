@@ -1,50 +1,137 @@
-# Welcome to your Expo app 👋
+# TaskMate - DevNusa Internal Task Manager
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+TaskMate adalah aplikasi mobile internal untuk mengelola tugas antar anggota tim DevNusa. Project dibuat dengan Expo React Native dan TypeScript.
 
-## Get started
+## Fitur Utama
 
-1. Install dependencies
+- Login Screen dengan validasi lokal
+- Task List Screen
+- Task Detail Screen
+- Dashboard ringkasan task
+- CRUD task:
+  - Create task cepat
+  - Read task list
+  - Update task detail
+  - Delete task
+- Persistence menggunakan AsyncStorage
+- State management dengan Context API + useReducer
+- Navigasi gabungan Stack + Tab menggunakan Expo Router/React Navigation
+- API service simulation menggunakan Axios
 
-   ```bash
-   npm install
-   ```
+## Struktur Folder
 
-2. Start the app
-
-   ```bash
-   npx expo start
-   ```
-
-In the output, you'll find options to open the app in a
-
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
-
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
-
-## Get a fresh project
-
-When you're ready, run:
-
-```bash
-npm run reset-project
+```txt
+TaskMate/
+├── app/
+│   ├── _layout.tsx              # Root Stack: login, tabs, detail
+│   ├── login.tsx                # Login Screen
+│   ├── (tabs)/
+│   │   ├── _layout.tsx          # Bottom Tab Navigator
+│   │   ├── index.tsx            # Task List Screen
+│   │   └── explore.tsx          # Dashboard Screen
+│   └── task/
+│       └── [id].tsx             # Task Detail Screen
+├── src/
+│   ├── components/
+│   │   └── TaskCard.tsx         # Reusable task card
+│   ├── constants/
+│   │   └── theme.ts             # Color, spacing, style constants
+│   ├── context/
+│   │   ├── TaskContext.tsx      # Context Provider + CRUD operations
+│   │   └── taskReducer.ts       # Reducer, action, state, task type
+│   ├── hooks/
+│   │   └── useTasks.ts          # Custom hook export
+│   └── services/
+│       └── api.ts               # Axios API simulation + security notes
+├── REFLECTION.md                # Analisis kritis arsitektur, state, security
+└── README.md
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+## Routing / Navigasi
 
-## Learn more
+| Route | Screen | Fungsi |
+|---|---|---|
+| `/login` | LoginScreen | Validasi login lokal |
+| `/(tabs)` | TabLayout | Container tab utama |
+| `/(tabs)/index` | TaskListScreen | Daftar task + create task |
+| `/(tabs)/explore` | DashboardScreen | Statistik task |
+| `/task/[id]` | TaskDetailScreen | Edit/delete task berdasarkan id |
 
-To learn more about developing your project with Expo, look at the following resources:
+## State Management
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+State dikelola melalui:
 
-## Join the community
+- `TaskProvider`
+- `useReducer`
+- `useTasks` custom hook
+- AsyncStorage key: `@TaskMate:tasks`
 
-Join our community of developers creating universal apps.
+Action reducer:
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+- `ADD_TASK`
+- `UPDATE_TASK`
+- `DELETE_TASK`
+- `FETCH_TASKS`
+- `SET_LOADING`
+- `SET_ERROR`
+
+## Data Dummy
+
+Task awal otomatis dibuat jika AsyncStorage kosong:
+
+1. Setup Project Structure
+2. Implement Navigation
+3. Implement State Management
+4. Create Task CRUD Operations
+5. Write Reflection Document
+
+## API
+
+File `src/services/api.ts` menggunakan Axios instance dengan base URL simulasi:
+
+```txt
+https://api.taskmate.devnusa.example.com
+```
+
+Endpoint belum real. Fungsi API dibuat sebagai simulasi:
+
+- `fetchTasks`
+- `createTask`
+- `updateTask`
+- `deleteTask`
+
+## Cara Menjalankan
+
+```bash
+npm install
+npm start
+```
+
+Lalu pilih platform:
+
+```bash
+npm run android
+npm run ios
+npm run web
+```
+
+## Testing Manual
+
+Checklist:
+
+- [ ] Login dengan email valid dan password minimal 6 karakter
+- [ ] Masuk ke tab Tasks
+- [ ] Tambah task cepat
+- [ ] Buka detail task
+- [ ] Ubah title, description, assignee, due date, status, priority
+- [ ] Simpan perubahan
+- [ ] Hapus task
+- [ ] Cek dashboard berubah sesuai data task
+- [ ] Restart app dan pastikan data tersimpan dari AsyncStorage
+
+## Catatan Security
+
+- AsyncStorage hanya digunakan untuk data non-sensitif.
+- Token/password tidak boleh disimpan di AsyncStorage.
+- Production harus memakai SecureStore/Keychain/Keystore.
+- API production wajib HTTPS, certificate pinning, validasi token server-side, rate limiting, dan input validation.

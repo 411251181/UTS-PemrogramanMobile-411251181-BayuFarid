@@ -1,98 +1,123 @@
-import { Image } from 'expo-image';
-import { Platform, StyleSheet } from 'react-native';
+import { router } from 'expo-router';
+import React, { useMemo, useState } from 'react';
+import { FlatList, Pressable, StyleSheet, Text, TextInput, View } from 'react-native';
 
-import { HelloWave } from '@/components/hello-wave';
-import ParallaxScrollView from '@/components/parallax-scroll-view';
-import { ThemedText } from '@/components/themed-text';
-import { ThemedView } from '@/components/themed-view';
-import { Link } from 'expo-router';
+import TaskCard from '@/src/components/TaskCard';
+import { COLORS } from '@/src/constants/theme';
+import { useTasks } from '@/src/hooks/useTasks';
 
-export default function HomeScreen() {
+export default function TaskListScreen() {
+  const { state, addTask } = useTasks();
+  const [title, setTitle] = useState('');
+
+  const stats = useMemo(() => {
+    const completed = state.tasks.filter((task) => task.status === 'completed').length;
+    return `${completed}/${state.tasks.length} completed`;
+  }, [state.tasks]);
+
+  const handleAdd = () => {
+    if (!title.trim()) return;
+
+    addTask({
+      title: title.trim(),
+      description: 'Task baru dari form cepat TaskMate.',
+      status: 'pending',
+      priority: 'medium',
+      assignee: 'DevNusa Team',
+      dueDate: new Date().toISOString().slice(0, 10),
+    });
+    setTitle('');
+  };
+
   return (
-    <ParallaxScrollView
-      headerBackgroundColor={{ light: '#A1CEDC', dark: '#1D3D47' }}
-      headerImage={
-        <Image
-          source={require('@/assets/images/partial-react-logo.png')}
-          style={styles.reactLogo}
-        />
-      }>
-      <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title">Welcome!</ThemedText>
-        <HelloWave />
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 1: Try it</ThemedText>
-        <ThemedText>
-          Edit <ThemedText type="defaultSemiBold">app/(tabs)/index.tsx</ThemedText> to see changes.
-          Press{' '}
-          <ThemedText type="defaultSemiBold">
-            {Platform.select({
-              ios: 'cmd + d',
-              android: 'cmd + m',
-              web: 'F12',
-            })}
-          </ThemedText>{' '}
-          to open developer tools.
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <Link href="/modal">
-          <Link.Trigger>
-            <ThemedText type="subtitle">Step 2: Explore</ThemedText>
-          </Link.Trigger>
-          <Link.Preview />
-          <Link.Menu>
-            <Link.MenuAction title="Action" icon="cube" onPress={() => alert('Action pressed')} />
-            <Link.MenuAction
-              title="Share"
-              icon="square.and.arrow.up"
-              onPress={() => alert('Share pressed')}
-            />
-            <Link.Menu title="More" icon="ellipsis">
-              <Link.MenuAction
-                title="Delete"
-                icon="trash"
-                destructive
-                onPress={() => alert('Delete pressed')}
-              />
-            </Link.Menu>
-          </Link.Menu>
-        </Link>
+    <View style={styles.container}>
+      <View style={styles.summary}>
+        <Text style={styles.summaryTitle}>Team Tasks</Text>
+        <Text style={styles.summaryText}>{stats}</Text>
+      </View>
 
-        <ThemedText>
-          {`Tap the Explore tab to learn more about what's included in this starter app.`}
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 3: Get a fresh start</ThemedText>
-        <ThemedText>
-          {`When you're ready, run `}
-          <ThemedText type="defaultSemiBold">npm run reset-project</ThemedText> to get a fresh{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> directory. This will move the current{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> to{' '}
-          <ThemedText type="defaultSemiBold">app-example</ThemedText>.
-        </ThemedText>
-      </ThemedView>
-    </ParallaxScrollView>
+      <View style={styles.quickAdd}>
+        <TextInput
+          onChangeText={setTitle}
+          placeholder="Tambah task cepat..."
+          style={styles.input}
+          value={title}
+        />
+        <Pressable style={styles.addButton} onPress={handleAdd}>
+          <Text style={styles.addButtonText}>Tambah</Text>
+        </Pressable>
+      </View>
+
+      {state.error ? <Text style={styles.error}>{state.error}</Text> : null}
+
+      <FlatList
+        data={state.tasks}
+        keyExtractor={(item) => item.id}
+        contentContainerStyle={styles.list}
+        renderItem={({ item }) => (
+          <TaskCard task={item} onPress={() => router.push(`/task/${item.id}`)} />
+        )}
+        ListEmptyComponent={<Text style={styles.empty}>Belum ada task.</Text>}
+      />
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
-  titleContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 8,
+  container: {
+    backgroundColor: COLORS.background.light,
+    flex: 1,
+    padding: 16,
   },
-  stepContainer: {
+  summary: {
+    backgroundColor: COLORS.primary,
+    borderRadius: 16,
+    marginBottom: 16,
+    padding: 18,
+  },
+  summaryTitle: {
+    color: '#fff',
+    fontSize: 22,
+    fontWeight: '800',
+  },
+  summaryText: {
+    color: '#fff',
+    fontSize: 14,
+    marginTop: 4,
+  },
+  quickAdd: {
+    flexDirection: 'row',
     gap: 8,
+    marginBottom: 14,
+  },
+  input: {
+    backgroundColor: '#fff',
+    borderColor: COLORS.border.light,
+    borderRadius: 12,
+    borderWidth: 1,
+    flex: 1,
+    padding: 12,
+  },
+  addButton: {
+    alignItems: 'center',
+    backgroundColor: COLORS.success,
+    borderRadius: 12,
+    justifyContent: 'center',
+    paddingHorizontal: 14,
+  },
+  addButtonText: {
+    color: '#fff',
+    fontWeight: '700',
+  },
+  list: {
+    paddingBottom: 24,
+  },
+  error: {
+    color: COLORS.danger,
     marginBottom: 8,
   },
-  reactLogo: {
-    height: 178,
-    width: 290,
-    bottom: 0,
-    left: 0,
-    position: 'absolute',
+  empty: {
+    color: COLORS.text.secondary.light,
+    textAlign: 'center',
   },
 });
