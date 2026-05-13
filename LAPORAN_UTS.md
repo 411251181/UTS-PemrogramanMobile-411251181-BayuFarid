@@ -46,6 +46,22 @@ TaskMate/
 └── package.json                 # Dependencies
 ```
 
+**Link ke Struktur File (GitHub):**
+| File | Lokasi |
+|------|--------|
+| Root Layout | [app/_layout.tsx](https://github.com/411251181/UTS-PemrogramanMobile-411251181-BayuFarid/blob/master/app/_layout.tsx) |
+| Login Screen | [app/login.tsx](https://github.com/411251181/UTS-PemrogramanMobile-411251181-BayuFarid/blob/master/app/login.tsx) |
+| Tab Layout | [app/(tabs)/_layout.tsx](https://github.com/411251181/UTS-PemrogramanMobile-411251181-BayuFarid/blob/master/app/(tabs)/_layout.tsx) |
+| Task List | [app/(tabs)/index.tsx](https://github.com/411251181/UTS-PemrogramanMobile-411251181-BayuFarid/blob/master/app/(tabs)/index.tsx) |
+| Dashboard | [app/(tabs)/explore.tsx](https://github.com/411251181/UTS-PemrogramanMobile-411251181-BayuFarid/blob/master/app/(tabs)/explore.tsx) |
+| Task Detail | [app/task/[id].tsx](https://github.com/411251181/UTS-PemrogramanMobile-411251181-BayuFarid/blob/master/app/task/[id].tsx) |
+| TaskContext | [src/context/TaskContext.tsx](https://github.com/411251181/UTS-PemrogramanMobile-411251181-BayuFarid/blob/master/src/context/TaskContext.tsx) |
+| TaskReducer | [src/context/taskReducer.ts](https://github.com/411251181/UTS-PemrogramanMobile-411251181-BayuFarid/blob/master/src/context/taskReducer.ts) |
+| Custom Hook | [src/hooks/useTasks.ts](https://github.com/411251181/UTS-PemrogramanMobile-411251181-BayuFarid/blob/master/src/hooks/useTasks.ts) |
+| TaskCard | [src/components/TaskCard.tsx](https://github.com/411251181/UTS-PemrogramanMobile-411251181-BayuFarid/blob/master/src/components/TaskCard.tsx) |
+| Theme | [src/constants/theme.ts](https://github.com/411251181/UTS-PemrogramanMobile-411251181-BayuFarid/blob/master/src/constants/theme.ts) |
+| API Service | [src/services/api.ts](https://github.com/411251181/UTS-PemrogramanMobile-411251181-BayuFarid/blob/master/src/services/api.ts) |
+
 **Alasan Pemilihan Struktur:**
 - **app/**: Menggunakan Expo Router untuk file-based routing yang lebih intuitif
 - **src/components**: Komponen reusable untuk menghindari duplikasi kode
@@ -59,7 +75,7 @@ TaskMate/
 Aplikasi menggunakan kombinasi **Stack Navigator** dan **Tab Navigator** dari React Navigation v7:
 
 #### Stack Navigator (Root Level)
-File: `app/_layout.tsx`
+File: [`app/_layout.tsx`](https://github.com/411251181/UTS-PemrogramanMobile-411251181-BayuFarid/blob/master/app/_layout.tsx)
 
 ```typescript
 <Stack initialRouteName="login">
@@ -76,7 +92,7 @@ File: `app/_layout.tsx`
 - Mendukung parameter passing antar screen
 
 #### Tab Navigator (Main App)
-File: `app/(tabs)/_layout.tsx`
+File: [`app/(tabs)/_layout.tsx`](https://github.com/411251181/UTS-PemrogramanMobile-411251181-BayuFarid/blob/master/app/(tabs)/_layout.tsx)
 
 ```typescript
 <Tabs screenOptions={{ tabBarActiveTintColor: COLORS.primary }}>
@@ -93,24 +109,24 @@ File: `app/(tabs)/_layout.tsx`
 
 ### 1.3 Screen Implementation
 
-#### Login Screen (`app/login.tsx`)
+#### Login Screen ([`app/login.tsx`](https://github.com/411251181/UTS-PemrogramanMobile-411251181-BayuFarid/blob/master/app/login.tsx))
 - Form validation (email format, password min 6 char)
 - Navigate to tabs setelah login sukses
 - Demo credentials: bayu@devnusa.id / taskmate123
 
-#### Task List Screen (`app/(tabs)/index.tsx`)
+#### Task List Screen ([`app/(tabs)/index.tsx`](https://github.com/411251181/UTS-PemrogramanMobile-411251181-BayuFarid/blob/master/app/(tabs)/index.tsx))
 - FlatList untuk render task cards
 - Quick add task form
 - Summary statistics (completed/total)
 - Navigate ke detail saat card di-tap
 
-#### Task Detail Screen (`app/task/[id].tsx`)
+#### Task Detail Screen ([`app/task/[id].tsx`](https://github.com/411251181/UTS-PemrogramanMobile-411251181-BayuFarid/blob/master/app/task/[id].tsx))
 - Dynamic route dengan parameter `id`
 - Full CRUD: Read, Update, Delete
 - Form fields: title, description, assignee, due date, status, priority
 - Navigate back setelah delete
 
-#### Dashboard Screen (`app/(tabs)/explore.tsx`)
+#### Dashboard Screen ([`app/(tabs)/explore.tsx`](https://github.com/411251181/UTS-PemrogramanMobile-411251181-BayuFarid/blob/master/app/(tabs)/explore.tsx))
 - Statistik task: pending, in progress, completed, high priority
 - Real-time update dari Context
 
@@ -132,7 +148,7 @@ Kombinasi Stack + Tab memberikan best of both worlds:
 
 ### 2.1 Context API Implementation
 
-File: `src/context/TaskContext.tsx`
+File: [`src/context/TaskContext.tsx`](https://github.com/411251181/UTS-PemrogramanMobile-411251181-BayuFarid/blob/master/src/context/TaskContext.tsx)
 
 ```typescript
 const TaskContext = createContext<TaskContextType | undefined>(undefined);
@@ -156,7 +172,7 @@ export const TaskProvider: React.FC<TaskProviderProps> = ({ children }) => {
 
 ### 2.2 useReducer Implementation
 
-File: `src/context/taskReducer.ts`
+File: [`src/context/taskReducer.ts`](https://github.com/411251181/UTS-PemrogramanMobile-411251181-BayuFarid/blob/master/src/context/taskReducer.ts)
 
 ```typescript
 export const taskReducer = (state: TaskState, action: TaskAction): TaskState => {
@@ -227,7 +243,7 @@ const deleteTask = (id: string) => {
 
 ### 2.4 Custom Hook
 
-File: `src/hooks/useTasks.ts`
+File: [`src/hooks/useTasks.ts`](https://github.com/411251181/UTS-PemrogramanMobile-411251181-BayuFarid/blob/master/src/hooks/useTasks.ts)
 
 ```typescript
 export const useTasks = (): TaskContextType => {
@@ -294,6 +310,9 @@ Maka Redux Toolkit dengan middleware seperti Redux-Saga atau RTK Query akan lebi
 ---
 
 ## BAGIAN 3: ANALISIS KRITIS & EVALUASI (20%)
+
+### 📄 File REFLECTION.md
+Analisis kritis lengkap dapat dilihat di: [REFLECTION.md](https://github.com/411251181/UTS-PemrogramanMobile-411251181-BayuFarid/blob/master/REFLECTION.md)
 
 ### 3.1 Kelemahan Arsitektur Jika 10x Fitur
 
@@ -506,11 +525,39 @@ Aplikasi TaskMate berhasil diimplementasikan dengan:
 - ✅ TypeScript untuk type safety
 - ✅ Analisis mendalam terhadap scalability dan security
 
-**Repository:** https://github.com/411251181/UTS-PemrogramanMobile-411251181-BayuFarid.git
+### 📁 Referensi File di GitHub
 
-**Commit:** decdbe2 - feat: implement TaskMate with Stack+Tab navigation, Context API+useReducer, CRUD operations, and REFLECTION.md analysis
+| Dokumentasi | Link |
+|-------------|------|
+| Repository | https://github.com/411251181/UTS-PemrogramanMobile-411251181-BayuFarid |
+| REFLECTION.md (Analisis Kritis) | [REFLECTION.md](https://github.com/411251181/UTS-PemrogramanMobile-411251181-BayuFarid/blob/master/REFLECTION.md) |
+| README.md | [README.md](https://github.com/411251181/UTS-PemrogramanMobile-411251181-BayuFarid/blob/master/README.md) |
+| Development Guide | [Development-Manual-Debugging.md](https://github.com/411251181/UTS-PemrogramanMobile-411251181-BayuFarid/blob/master/Development-Manual-Debugging.md) |
+
+### 📂 Struktur Kode (File Links)
+
+| Komponen | Path | Link |
+|----------|------|------|
+| **Navigasi** | | |
+| Root Layout | app/_layout.tsx | [View](https://github.com/411251181/UTS-PemrogramanMobile-411251181-BayuFarid/blob/master/app/_layout.tsx) |
+| Tab Layout | app/(tabs)/_layout.tsx | [View](https://github.com/411251181/UTS-PemrogramanMobile-411251181-BayuFarid/blob/master/app/(tabs)/_layout.tsx) |
+| **Screens** | | |
+| Login | app/login.tsx | [View](https://github.com/411251181/UTS-PemrogramanMobile-411251181-BayuFarid/blob/master/app/login.tsx) |
+| Task List | app/(tabs)/index.tsx | [View](https://github.com/411251181/UTS-PemrogramanMobile-411251181-BayuFarid/blob/master/app/(tabs)/index.tsx) |
+| Dashboard | app/(tabs)/explore.tsx | [View](https://github.com/411251181/UTS-PemrogramanMobile-411251181-BayuFarid/blob/master/app/(tabs)/explore.tsx) |
+| Task Detail | app/task/[id].tsx | [View](https://github.com/411251181/UTS-PemrogramanMobile-411251181-BayuFarid/blob/master/app/task/[id].tsx) |
+| **State Management** | | |
+| TaskContext | src/context/TaskContext.tsx | [View](https://github.com/411251181/UTS-PemrogramanMobile-411251181-BayuFarid/blob/master/src/context/TaskContext.tsx) |
+| TaskReducer | src/context/taskReducer.ts | [View](https://github.com/411251181/UTS-PemrogramanMobile-411251181-BayuFarid/blob/master/src/context/taskReducer.ts) |
+| Custom Hook | src/hooks/useTasks.ts | [View](https://github.com/411251181/UTS-PemrogramanMobile-411251181-BayuFarid/blob/master/src/hooks/useTasks.ts) |
+| **UI & Utils** | | |
+| TaskCard | src/components/TaskCard.tsx | [View](https://github.com/411251181/UTS-PemrogramanMobile-411251181-BayuFarid/blob/master/src/components/TaskCard.tsx) |
+| Theme | src/constants/theme.ts | [View](https://github.com/411251181/UTS-PemrogramanMobile-411251181-BayuFarid/blob/master/src/constants/theme.ts) |
+| API Service | src/services/api.ts | [View](https://github.com/411251181/UTS-PemrogramanMobile-411251181-BayuFarid/blob/master/src/services/api.ts) |
 
 ---
+
+**Commit:** `decdbe2` - feat: implement TaskMate with Stack+Tab navigation, Context API+useReducer, CRUD operations, and REFLECTION.md analysis
 
 **Nama:** Bayu Farid  
 **NIM:** 411251181  
