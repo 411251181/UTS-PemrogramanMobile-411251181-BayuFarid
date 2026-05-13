@@ -1,0 +1,373 @@
+{
+  "total": 61,
+  "passed": 57,
+  "failed": 4,
+  "tests": [
+    {
+      "category": "Navigation",
+      "name": "File exists: app/_layout.tsx",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "category": "Navigation",
+      "name": "app/_layout.tsx has content",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "category": "Navigation",
+      "name": "app/_layout.tsx has navigator",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "category": "Navigation",
+      "name": "File exists: app/login.tsx",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "category": "Navigation",
+      "name": "app/login.tsx has content",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "category": "Navigation",
+      "name": "File exists: app/(tabs)/_layout.tsx",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "category": "Navigation",
+      "name": "app/(tabs)/_layout.tsx has content",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "category": "Navigation",
+      "name": "app/(tabs)/_layout.tsx has navigator",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "category": "Navigation",
+      "name": "File exists: app/(tabs)/index.tsx",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "category": "Navigation",
+      "name": "app/(tabs)/index.tsx has content",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "category": "Navigation",
+      "name": "File exists: app/(tabs)/explore.tsx",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "category": "Navigation",
+      "name": "app/(tabs)/explore.tsx has content",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "category": "Navigation",
+      "name": "File exists: app/task/[id].tsx",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "category": "Navigation",
+      "name": "app/task/[id].tsx has content",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "category": "CRUD",
+      "name": "addTask function exists",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "category": "CRUD",
+      "name": "updateTask function exists",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "category": "CRUD",
+      "name": "deleteTask function exists",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "category": "CRUD",
+      "name": "AsyncStorage integration",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "category": "CRUD",
+      "name": "STORAGE_KEY defined",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "category": "State",
+      "name": "Action ADD_TASK defined",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "category": "State",
+      "name": "Action UPDATE_TASK defined",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "category": "State",
+      "name": "Action DELETE_TASK defined",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "category": "State",
+      "name": "Action FETCH_TASKS defined",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "category": "State",
+      "name": "Action SET_LOADING defined",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "category": "State",
+      "name": "Action SET_ERROR defined",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "category": "State",
+      "name": "taskReducer function exists",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "category": "State",
+      "name": "TypeScript types defined",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "category": "UI/UX",
+      "name": "TaskCard component exists",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "category": "UI/UX",
+      "name": "TaskCard component has JSX/TSX",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "category": "UI/UX",
+      "name": "Theme constants exists",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "category": "UI/UX",
+      "name": "Theme constants has JSX/TSX",
+      "passed": false,
+      "details": ""
+    },
+    {
+      "category": "UI/UX",
+      "name": "Login screen exists",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "category": "UI/UX",
+      "name": "Login screen has JSX/TSX",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "category": "UI/UX",
+      "name": "Task List screen exists",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "category": "UI/UX",
+      "name": "Task List screen has JSX/TSX",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "category": "UI/UX",
+      "name": "Task Detail screen exists",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "category": "UI/UX",
+      "name": "Task Detail screen has JSX/TSX",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "category": "Performance",
+      "name": "Root layout size OK (1112 bytes)",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "category": "Performance",
+      "name": "TaskContext size OK (6361 bytes)",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "category": "Performance",
+      "name": "Reducer size OK (2657 bytes)",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "category": "Error Handling",
+      "name": "src/context/TaskContext.tsx has try-catch",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "category": "Error Handling",
+      "name": "src/context/TaskContext.tsx has error state",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "category": "Error Handling",
+      "name": "app/login.tsx has try-catch",
+      "passed": false,
+      "details": ""
+    },
+    {
+      "category": "Error Handling",
+      "name": "app/login.tsx has error state",
+      "passed": false,
+      "details": ""
+    },
+    {
+      "category": "Data",
+      "name": "Dummy data is valid JSON",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "category": "Data",
+      "name": "Has 30 tasks",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "category": "Data",
+      "name": "All tasks have required fields",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "category": "Data",
+      "name": "All statuses are valid",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "category": "Data",
+      "name": "All priorities are valid",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "category": "Documentation",
+      "name": "README exists",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "category": "Documentation",
+      "name": "README has sufficient content (522 words)",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "category": "Documentation",
+      "name": "REFLECTION exists",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "category": "Documentation",
+      "name": "REFLECTION has sufficient content (536 words)",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "category": "Documentation",
+      "name": "LAPORAN_UTS exists",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "category": "Documentation",
+      "name": "LAPORAN_UTS has sufficient content (1828 words)",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "category": "TypeScript",
+      "name": "src/context/taskReducer.ts has type definitions",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "category": "TypeScript",
+      "name": "src/context/taskReducer.ts has exports",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "category": "TypeScript",
+      "name": "src/hooks/useTasks.ts has type definitions",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "category": "TypeScript",
+      "name": "src/hooks/useTasks.ts has exports",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "category": "TypeScript",
+      "name": "src/constants/theme.ts has type definitions",
+      "passed": false,
+      "details": ""
+    },
+    {
+      "category": "TypeScript",
+      "name": "src/constants/theme.ts has exports",
+      "passed": true,
+      "details": ""
+    }
+  ]
+}
