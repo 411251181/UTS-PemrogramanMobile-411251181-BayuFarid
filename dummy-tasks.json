@@ -1,0 +1,302 @@
+[
+  {
+    "id": "task_1778675877441_0",
+    "title": "Setup CI/CD Pipeline",
+    "description": "Implement automated deployment pipeline with GitHub Actions",
+    "status": "in_progress",
+    "priority": "low",
+    "assignee": "Fitri Handayani",
+    "dueDate": "2026-05-09",
+    "createdAt": "2026-04-26T12:37:57.436Z"
+  },
+  {
+    "id": "task_1778675877442_1",
+    "title": "Implement User Authentication",
+    "description": "Add JWT-based authentication with refresh tokens",
+    "status": "completed",
+    "priority": "medium",
+    "assignee": "Dewi Lestari",
+    "dueDate": "2026-05-04",
+    "createdAt": "2026-04-24T12:37:57.436Z"
+  },
+  {
+    "id": "task_1778675877442_2",
+    "title": "Design Database Schema",
+    "description": "Design normalized database schema for better performance",
+    "status": "in_progress",
+    "priority": "low",
+    "assignee": "Bayu Farid",
+    "dueDate": "2026-05-25",
+    "createdAt": "2026-05-12T12:37:57.436Z"
+  },
+  {
+    "id": "task_1778675877442_3",
+    "title": "Create API Documentation",
+    "description": "Create comprehensive API documentation using Swagger",
+    "status": "completed",
+    "priority": "low",
+    "assignee": "Budi Santoso",
+    "dueDate": "2026-05-12",
+    "createdAt": "2026-05-06T12:37:57.436Z"
+  },
+  {
+    "id": "task_1778675877442_4",
+    "title": "Fix Memory Leak Issue",
+    "description": "Investigate and fix memory leak in production",
+    "status": "in_progress",
+    "priority": "medium",
+    "assignee": "Gunawan Setiawan",
+    "dueDate": "2026-05-10",
+    "createdAt": "2026-04-28T12:37:57.436Z"
+  },
+  {
+    "id": "task_1778675877442_5",
+    "title": "Optimize Query Performance",
+    "description": "Optimize slow database queries using indexes",
+    "status": "pending",
+    "priority": "low",
+    "assignee": "Bayu Farid",
+    "dueDate": "2026-05-08",
+    "createdAt": "2026-05-01T12:37:57.436Z"
+  },
+  {
+    "id": "task_1778675877442_6",
+    "title": "Add Unit Tests",
+    "description": "Add comprehensive unit tests for critical functions",
+    "status": "in_progress",
+    "priority": "low",
+    "assignee": "Andi Wijaya",
+    "dueDate": "2026-04-24",
+    "createdAt": "2026-04-23T12:37:57.436Z"
+  },
+  {
+    "id": "task_1778675877442_7",
+    "title": "Update Dependencies",
+    "description": "Update all dependencies to latest stable versions",
+    "status": "pending",
+    "priority": "low",
+    "assignee": "Budi Santoso",
+    "dueDate": "2026-05-02",
+    "createdAt": "2026-04-26T12:37:57.436Z"
+  },
+  {
+    "id": "task_1778675877442_8",
+    "title": "Refactor Legacy Code",
+    "description": "Refactor old codebase to modern patterns",
+    "status": "pending",
+    "priority": "low",
+    "assignee": "Andi Wijaya",
+    "dueDate": "2026-04-22",
+    "createdAt": "2026-04-16T12:37:57.436Z"
+  },
+  {
+    "id": "task_1778675877442_9",
+    "title": "Implement Dark Mode",
+    "description": "Implement dark mode theme with user preference",
+    "status": "completed",
+    "priority": "high",
+    "assignee": "Dewi Lestari",
+    "dueDate": "2026-05-24",
+    "createdAt": "2026-05-13T12:37:57.436Z"
+  },
+  {
+    "id": "task_1778675877442_10",
+    "title": "Add Push Notifications",
+    "description": "Add push notification support for mobile apps",
+    "status": "pending",
+    "priority": "medium",
+    "assignee": "Eko Prasetyo",
+    "dueDate": "2026-04-26",
+    "createdAt": "2026-04-20T12:37:57.436Z"
+  },
+  {
+    "id": "task_1778675877442_11",
+    "title": "Create Admin Dashboard",
+    "description": "Create admin dashboard for system management",
+    "status": "in_progress",
+    "priority": "medium",
+    "assignee": "Gunawan Setiawan",
+    "dueDate": "2026-05-01",
+    "createdAt": "2026-04-24T12:37:57.436Z"
+  },
+  {
+    "id": "task_1778675877442_12",
+    "title": "Integrate Payment Gateway",
+    "description": "Integrate Stripe payment gateway for subscriptions",
+    "status": "in_progress",
+    "priority": "low",
+    "assignee": "Budi Santoso",
+    "dueDate": "2026-05-14",
+    "createdAt": "2026-05-01T12:37:57.436Z"
+  },
+  {
+    "id": "task_1778675877442_13",
+    "title": "Setup Monitoring System",
+    "description": "Setup monitoring with Prometheus and Grafana",
+    "status": "completed",
+    "priority": "low",
+    "assignee": "Siti Nurhaliza",
+    "dueDate": "2026-05-21",
+    "createdAt": "2026-05-09T12:37:57.436Z"
+  },
+  {
+    "id": "task_1778675877442_14",
+    "title": "Implement Caching Layer",
+    "description": "Implement Redis caching for frequently accessed data",
+    "status": "in_progress",
+    "priority": "low",
+    "assignee": "Andi Wijaya",
+    "dueDate": "2026-05-15",
+    "createdAt": "2026-05-03T12:37:57.436Z"
+  },
+  {
+    "id": "task_1778675877442_15",
+    "title": "Add Internationalization",
+    "description": "Add multi-language support with i18n",
+    "status": "completed",
+    "priority": "low",
+    "assignee": "Siti Nurhaliza",
+    "dueDate": "2026-04-28",
+    "createdAt": "2026-04-21T12:37:57.436Z"
+  },
+  {
+    "id": "task_1778675877442_16",
+    "title": "Create Mobile App",
+    "description": "Develop mobile application using React Native",
+    "status": "in_progress",
+    "priority": "high",
+    "assignee": "Gunawan Setiawan",
+    "dueDate": "2026-05-08",
+    "createdAt": "2026-04-25T12:37:57.436Z"
+  },
+  {
+    "id": "task_1778675877442_17",
+    "title": "Setup Load Balancer",
+    "description": "Setup load balancer for high availability",
+    "status": "pending",
+    "priority": "low",
+    "assignee": "Dewi Lestari",
+    "dueDate": "2026-04-25",
+    "createdAt": "2026-04-16T12:37:57.436Z"
+  },
+  {
+    "id": "task_1778675877442_18",
+    "title": "Implement Rate Limiting",
+    "description": "Implement API rate limiting to prevent abuse",
+    "status": "in_progress",
+    "priority": "medium",
+    "assignee": "Fitri Handayani",
+    "dueDate": "2026-04-21",
+    "createdAt": "2026-04-20T12:37:57.436Z"
+  },
+  {
+    "id": "task_1778675877442_19",
+    "title": "Add Analytics Tracking",
+    "description": "Add Google Analytics and custom event tracking",
+    "status": "in_progress",
+    "priority": "high",
+    "assignee": "Fitri Handayani",
+    "dueDate": "2026-05-07",
+    "createdAt": "2026-05-04T12:37:57.436Z"
+  },
+  {
+    "id": "task_1778675877442_20",
+    "title": "Create User Onboarding",
+    "description": "Create smooth user onboarding experience",
+    "status": "pending",
+    "priority": "low",
+    "assignee": "Andi Wijaya",
+    "dueDate": "2026-05-07",
+    "createdAt": "2026-04-27T12:37:57.436Z"
+  },
+  {
+    "id": "task_1778675877442_21",
+    "title": "Fix Security Vulnerabilities",
+    "description": "Fix identified security vulnerabilities from audit",
+    "status": "pending",
+    "priority": "high",
+    "assignee": "Fitri Handayani",
+    "dueDate": "2026-05-11",
+    "createdAt": "2026-04-27T12:37:57.436Z"
+  },
+  {
+    "id": "task_1778675877442_22",
+    "title": "Optimize Bundle Size",
+    "description": "Optimize JavaScript bundle size for faster loading",
+    "status": "in_progress",
+    "priority": "high",
+    "assignee": "Siti Nurhaliza",
+    "dueDate": "2026-04-28",
+    "createdAt": "2026-04-23T12:37:57.436Z"
+  },
+  {
+    "id": "task_1778675877442_23",
+    "title": "Add E2E Tests",
+    "description": "Add end-to-end tests using Cypress",
+    "status": "in_progress",
+    "priority": "low",
+    "assignee": "Siti Nurhaliza",
+    "dueDate": "2026-05-01",
+    "createdAt": "2026-04-27T12:37:57.436Z"
+  },
+  {
+    "id": "task_1778675877442_24",
+    "title": "Implement WebSocket",
+    "description": "Implement real-time communication with WebSocket",
+    "status": "in_progress",
+    "priority": "low",
+    "assignee": "Eko Prasetyo",
+    "dueDate": "2026-04-22",
+    "createdAt": "2026-04-18T12:37:57.436Z"
+  },
+  {
+    "id": "task_1778675877442_25",
+    "title": "Create Backup System",
+    "description": "Create automated backup system for database",
+    "status": "pending",
+    "priority": "high",
+    "assignee": "Gunawan Setiawan",
+    "dueDate": "2026-05-01",
+    "createdAt": "2026-04-24T12:37:57.436Z"
+  },
+  {
+    "id": "task_1778675877442_26",
+    "title": "Add Search Functionality",
+    "description": "Add full-text search functionality",
+    "status": "pending",
+    "priority": "high",
+    "assignee": "Dewi Lestari",
+    "dueDate": "2026-05-20",
+    "createdAt": "2026-05-13T12:37:57.436Z"
+  },
+  {
+    "id": "task_1778675877442_27",
+    "title": "Implement File Upload",
+    "description": "Implement secure file upload with validation",
+    "status": "pending",
+    "priority": "low",
+    "assignee": "Andi Wijaya",
+    "dueDate": "2026-04-28",
+    "createdAt": "2026-04-21T12:37:57.436Z"
+  },
+  {
+    "id": "task_1778675877442_28",
+    "title": "Create Email Templates",
+    "description": "Create responsive email templates",
+    "status": "completed",
+    "priority": "low",
+    "assignee": "Bayu Farid",
+    "dueDate": "2026-05-09",
+    "createdAt": "2026-04-29T12:37:57.436Z"
+  },
+  {
+    "id": "task_1778675877442_29",
+    "title": "Add Social Login",
+    "description": "Add OAuth login with Google and Facebook",
+    "status": "completed",
+    "priority": "high",
+    "assignee": "Eko Prasetyo",
+    "dueDate": "2026-05-04",
+    "createdAt": "2026-04-28T12:37:57.436Z"
+  }
+]
