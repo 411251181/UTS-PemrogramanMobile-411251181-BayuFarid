@@ -8,6 +8,30 @@ Dokumen ini berisi panduan untuk **manual testing** dan **debugging** aplikasi T
 
 ## 🚀 Cara Menjalankan Aplikasi
 
+### Pre-check sebelum Debugging
+
+Jalankan dari folder project:
+
+```bash
+cd TaskMate
+npx expo-doctor
+```
+
+Jika muncul warning seperti ini:
+
+```text
+@react-native-async-storage/async-storage@3.0.2 - expected version: 2.2.0
+```
+
+Artinya versi package tidak sesuai dengan Expo SDK yang terpasang. Perbaiki dengan:
+
+```bash
+npx expo install @react-native-async-storage/async-storage
+npx expo start --clear
+```
+
+> Gunakan `npx expo install`, bukan `npm install`, karena Expo akan memilih versi dependency yang kompatibel dengan SDK project.
+
 ### Metode 1: Expo Go (Recommended untuk Development)
 
 1. **Start Expo Development Server:**
@@ -18,10 +42,24 @@ Dokumen ini berisi panduan untuk **manual testing** dan **debugging** aplikasi T
 
 2. **Buka Aplikasi:**
    - **Android:** Scan QR code dengan aplikasi Expo Go
-   - **iOS:** Scan QR code dengan Camera app (iOS 13+)
+   - **iOS device fisik:** Scan QR code dengan Camera app atau Expo Go
    - **Web:** Tekan `w` di terminal untuk membuka di browser
 
-3. **Hot Reload:**
+3. **Arti output terminal:**
+   ```text
+   › Metro waiting on exp://192.168.x.x:8081
+   › Web is waiting on http://localhost:8081
+   › Press a │ open Android
+   › Press i │ open iOS simulator
+   › Press j │ open debugger
+   ```
+   - `Metro waiting` berarti server berjalan normal.
+   - QR code dipakai untuk membuka app di Expo Go.
+   - Tekan `j` untuk membuka debugger.
+   - Tekan `Ctrl+C` untuk menghentikan server.
+   - Jika muncul `Stopped server`, itu berarti server berhenti karena Anda menekan `Ctrl+C` atau terminal ditutup.
+
+4. **Hot Reload:**
    - Tekan `r` di terminal untuk reload
    - Atau shake device dan pilih "Reload"
 
@@ -43,17 +81,104 @@ Dokumen ini berisi panduan untuk **manual testing** dan **debugging** aplikasi T
 
 ### Metode 3: iOS Simulator (macOS only)
 
-1. **Start dengan iOS Simulator:**
+`npx expo start --ios` hanya bisa berjalan jika Xcode sudah terinstall lengkap.
+
+1. **Install Xcode dari App Store.**
+
+2. **Set command line tools Xcode:**
+   ```bash
+   sudo xcode-select -s /Applications/Xcode.app/Contents/Developer
+   sudo xcodebuild -license accept
+   ```
+
+3. **Buka Xcode minimal sekali:**
+   - Buka aplikasi Xcode
+   - Tunggu proses installing components selesai
+   - Buka menu `Xcode > Settings > Platforms`
+   - Pastikan iOS Simulator runtime tersedia
+
+4. **Cek simulator tersedia:**
+   ```bash
+   xcrun simctl list devices available
+   ```
+
+5. **Start dengan iOS Simulator:**
    ```bash
    npx expo start --ios
    ```
 
-2. **Atau specify simulator:**
+6. **Atau specify simulator:**
    ```bash
    npx expo start --ios --simulator="iPhone 15"
    ```
 
+Jika muncul pesan:
+
+```text
+Xcode must be fully installed before you can continue
+```
+
+Penyebabnya bukan error Context API. Itu berarti Xcode belum lengkap atau command line tools belum diarahkan ke Xcode. Selesaikan langkah 1-4, lalu jalankan ulang Expo CLI.
+
 ---
+
+## ✅ Cara Debugging Context API dengan Benar
+
+### 1. Pastikan masalah bukan dari environment
+
+Sebelum menyimpulkan error berasal dari Context API, cek terminal:
+
+| Log Terminal | Arti | Tindakan |
+|-------------|------|----------|
+| `Metro waiting on exp://...` | Server Expo normal | Lanjut scan QR / buka simulator |
+| `@react-native-async-storage... expected version` | Dependency tidak cocok dengan Expo SDK | Jalankan `npx expo install @react-native-async-storage/async-storage` |
+| `Xcode must be fully installed` | iOS Simulator belum siap | Install/setup Xcode |
+| `Unable to resolve module` | Import/path bermasalah | Cek path import lalu clear cache |
+| `Context Not Accessible` / custom error hook | Provider belum membungkus screen | Cek `TaskProvider` di `app/_layout.tsx` |
+
+### 2. Test Context Provider
+
+Pastikan `TaskProvider` membungkus seluruh route di `app/_layout.tsx`.
+
+Checklist:
+- [ ] App tidak crash saat membuka Login
+- [ ] Task List bisa membaca `tasks`
+- [ ] Add/Edit/Delete memanggil action reducer
+- [ ] Dashboard ikut berubah setelah task berubah
+
+### 3. Test Reducer Flow
+
+Tambahkan log sementara di `src/context/taskReducer.ts`:
+
+```typescript
+console.log('[TaskReducer]', action.type, action.payload);
+```
+
+Expected saat testing:
+- Add task → muncul `ADD_TASK`
+- Edit task → muncul `UPDATE_TASK`
+- Delete task → muncul `DELETE_TASK`
+- Fetch awal → muncul `FETCH_TASKS`
+
+Hapus log setelah debugging selesai.
+
+### 4. Test AsyncStorage Persistence
+
+Tambahkan log sementara di `src/context/TaskContext.tsx` setelah save/load:
+
+```typescript
+console.log('[AsyncStorage] tasks:', tasks);
+```
+
+Flow test:
+1. Tambah task baru
+2. Reload app dengan tekan `r`
+3. Pastikan task masih ada
+4. Jika hilang, cek warning versi AsyncStorage dan jalankan:
+   ```bash
+   npx expo install @react-native-async-storage/async-storage
+   npx expo start --clear
+   ```
 
 ## 🧪 Manual Testing Checklist
 
@@ -188,7 +313,27 @@ npx expo start --clear
 npx expo start --reset-cache
 ```
 
-### Issue 2: AsyncStorage Data Not Persisting
+### Issue 2: AsyncStorage Version Warning
+
+```
+@react-native-async-storage/async-storage@3.0.2 - expected version: 2.2.0
+```
+
+**Penyebab:** versi AsyncStorage tidak sesuai dengan Expo SDK.
+
+**Solution:**
+```bash
+npx expo install @react-native-async-storage/async-storage
+npx expo start --clear
+```
+
+Setelah install, cek versi:
+
+```bash
+npm ls @react-native-async-storage/async-storage
+```
+
+### Issue 3: AsyncStorage Data Not Persisting
 
 **Check:**
 ```typescript
@@ -199,7 +344,7 @@ const data = await AsyncStorage.getItem('@TaskMate:tasks');
 console.log('Stored data:', data);
 ```
 
-### Issue 3: Navigation Not Working
+### Issue 4: Navigation Not Working
 
 **Check:**
 ```typescript
@@ -213,7 +358,7 @@ router.replace('/(tabs)');
 router.push('/task/123');
 ```
 
-### Issue 4: Context Not Accessible
+### Issue 5: Context Not Accessible
 
 **Check:**
 ```typescript
@@ -224,7 +369,40 @@ router.push('/task/123');
 const { tasks, loading, addTask } = useTasks();
 ```
 
-### Issue 5: TypeScript Errors
+Jika hook `useTasks()` dipanggil di luar `TaskProvider`, biasanya muncul error seperti:
+
+```text
+useTasks must be used within a TaskProvider
+```
+
+**Solution:**
+- Pastikan `TaskProvider` berada di root layout.
+- Jangan memanggil `useTasks()` di file yang berada di luar tree provider.
+- Untuk debug, pasang `console.log('[TaskProvider] mounted')` di provider.
+
+### Issue 6: iOS Simulator Tidak Bisa Dibuka
+
+```
+Xcode must be fully installed before you can continue
+```
+
+**Penyebab:** Xcode belum terinstall penuh atau command line tools belum diset.
+
+**Solution:**
+```bash
+sudo xcode-select -s /Applications/Xcode.app/Contents/Developer
+sudo xcodebuild -license accept
+xcrun simctl list devices available
+npx expo start --ios
+```
+
+Jika Xcode belum ada, install dulu dari App Store. Untuk sementara gunakan Expo Go di device fisik atau web dengan:
+
+```bash
+npx expo start --clear
+```
+
+### Issue 7: TypeScript Errors
 
 ```bash
 # Run TypeScript check
