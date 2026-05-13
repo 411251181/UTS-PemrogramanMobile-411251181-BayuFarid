@@ -1,20 +1,47 @@
 import { router } from 'expo-router';
 import React, { useState } from 'react';
-import { Alert, Pressable, StyleSheet, Text, TextInput, View } from 'react-native';
+import { ActivityIndicator, Alert, Pressable, StyleSheet, Text, TextInput, View } from 'react-native';
 
 import { COLORS } from '@/src/constants/theme';
 
 export default function LoginScreen() {
   const [email, setEmail] = useState('bayu@devnusa.id');
   const [password, setPassword] = useState('taskmate123');
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
-  const handleLogin = () => {
-    if (!email.includes('@') || password.length < 6) {
-      Alert.alert('Login gagal', 'Email harus valid dan password minimal 6 karakter.');
-      return;
+  const handleLogin = async () => {
+    try {
+      setLoading(true);
+      setError(null);
+
+      // Validation
+      if (!email.trim() || !password.trim()) {
+        setError('Email dan password harus diisi.');
+        return;
+      }
+
+      if (!email.includes('@')) {
+        setError('Format email tidak valid.');
+        return;
+      }
+
+      if (password.length < 6) {
+        setError('Password minimal 6 karakter.');
+        return;
+      }
+
+      // Simulate API call delay
+      await new Promise(resolve => setTimeout(resolve, 800));
+
+      // Success - navigate to tabs
+      router.replace('/(tabs)');
+    } catch (err) {
+      setError('Terjadi kesalahan saat login. Coba lagi.');
+      Alert.alert('Login Error', 'Gagal terhubung ke server. Periksa koneksi internet Anda.');
+    } finally {
+      setLoading(false);
     }
-
-    router.replace('/(tabs)');
   };
 
   return (
@@ -39,8 +66,22 @@ export default function LoginScreen() {
         value={password}
       />
 
-      <Pressable style={styles.button} onPress={handleLogin}>
-        <Text style={styles.buttonText}>Masuk</Text>
+      {error && (
+        <View style={styles.errorContainer}>
+          <Text style={styles.errorText}>{error}</Text>
+        </View>
+      )}
+
+      <Pressable 
+        style={[styles.button, loading && styles.buttonDisabled]} 
+        onPress={handleLogin}
+        disabled={loading}
+      >
+        {loading ? (
+          <ActivityIndicator color="#fff" size="small" />
+        ) : (
+          <Text style={styles.buttonText}>Masuk</Text>
+        )}
       </Pressable>
 
       <Text style={styles.note}>
@@ -98,5 +139,19 @@ const styles = StyleSheet.create({
     lineHeight: 18,
     marginTop: 24,
     textAlign: 'center',
+  },
+  errorContainer: {
+    backgroundColor: 'rgba(255, 59, 48, 0.1)',
+    borderRadius: 8,
+    marginBottom: 12,
+    padding: 12,
+  },
+  errorText: {
+    color: COLORS.error,
+    fontSize: 14,
+    textAlign: 'center',
+  },
+  buttonDisabled: {
+    opacity: 0.6,
   },
 });
